@@ -148,7 +148,7 @@ public class Reproduction {
 			//The next method is just for avoiding infinite loops, adding a random element if
 			//one with the same key was already added (this can happen because sometimes the resulting
 			//element has the same KEY, and produce that the size of the map be always the same) 
-			if(newChromosomes.containsKey(child1) || child1.getGenes().size()==0)
+			if(newChromosomes.containsKey(child1) )
 			{
 				Chromosome tChom = new Chromosome();
 				int sizeCh=rand.nextInt(ConfigurationsGA.SIZE_CHROMOSOME)+1;
@@ -158,7 +158,7 @@ public class Reproduction {
 				newChromosomes.put(tChom, BigDecimal.ZERO);
 			}
 			
-			if(newChromosomes.containsKey(child2) || child2.getGenes().size()==0)
+			if(newChromosomes.containsKey(child2) )
 			{
 				Chromosome tChom = new Chromosome();
 				int sizeCh=rand.nextInt(ConfigurationsGA.SIZE_CHROMOSOME)+1;
@@ -169,8 +169,11 @@ public class Reproduction {
 			}
 
 			//here is added the child!
-			newChromosomes.put(child1, BigDecimal.ZERO);
-			newChromosomes.put(child2, BigDecimal.ZERO);
+			if(child1.getGenes().size()!=0)
+				newChromosomes.put(child1, BigDecimal.ZERO);
+			
+			if(child2.getGenes().size()!=0)
+				newChromosomes.put(child2, BigDecimal.ZERO);
 		}
 		newGeneration=new Population(newChromosomes);
 		return newGeneration;
